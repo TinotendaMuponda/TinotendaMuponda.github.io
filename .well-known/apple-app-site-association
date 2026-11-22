@@ -1,0 +1,38 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "XRPU8RU92T.com.vukhora.app.staging"
+        ],
+        "components": [
+          {
+            "/": "/vukhora/staging/buddy"
+          },
+          {
+            "/": "/vukhora/staging/buddy/"
+          }
+        ]
+      },
+      {
+        "appIDs": [
+          "XRPU8RU92T.com.vukhora.app"
+        ],
+        "components": [
+          {
+            "/": "/vukhora/release/buddy"
+          },
+          {
+            "/": "/vukhora/release/buddy/"
+          },
+          {
+            "/": "/vukhora/local/buddy"
+          },
+          {
+            "/": "/vukhora/local/buddy/"
+          }
+        ]
+      }
+    ]
+  }
+}

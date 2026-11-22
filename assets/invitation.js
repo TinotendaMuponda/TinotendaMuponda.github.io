@@ -16,6 +16,10 @@
     return;
   }
   const scheme = environment === 'staging' ? 'vukhora-staging' : 'vukhora';
+  const endpoint = {
+    staging: 'https://tlhgztyzmpsamdhlavvn.supabase.co',
+    release: 'https://gvvbuesoytsfwrnlawpz.supabase.co',
+  }[environment];
   const deepLink = `${scheme}://buddy#token=${token}`;
   function enableOpen(enabled) {
     open.setAttribute('aria-disabled', String(!enabled));
@@ -26,7 +30,7 @@
   async function check() {
     enableOpen(false);
     retry.hidden = true;
-    if (environment !== 'staging') {
+    if (!endpoint) {
       status.textContent = 'Open Vukhora to check this invitation and choose whether to accept.';
       enableOpen(true);
       return;
@@ -35,7 +39,7 @@
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 8000);
     try {
-      const response = await fetch('https://tlhgztyzmpsamdhlavvn.supabase.co/functions/v1/buddy_invite_status', {
+      const response = await fetch(`${endpoint}/functions/v1/buddy_invite_status`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token }), signal: controller.signal, credentials: 'omit', referrerPolicy: 'no-referrer'
       });
